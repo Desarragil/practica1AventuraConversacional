@@ -29,22 +29,128 @@ undum.game.slideUpSpeed = 500
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
     start: new undum.SimpleSituation(
-        "<h1>Starting Out with Undum</h1>\
-        <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
-        <p>Welcome to the Undum tutorial. Undum is a tool for writing\
-        hypertext interactive fiction. It has some unique features\
-        and a visual design that encourages narrative games.</p>\
-        \
-        <p>Hypertext interactive fiction is the digital equivalent of the\
-        Choose Your Own Adventure (CYOA) books that were popular in the\
-        1980s. The story is told in chunks, and you select from a range\
-        of options to move it forward. Unlike the book form, however, the\
-        digital form gives you far more flexibility to tell rich stories\
-        and introduce more interesting game elements.</p>\
-        \
-        <p class='transient'>Click <a href='hub'>this link to\
-        continue...</a></p>"
-    ),
+        "<p>Es el día anterior al examen de estadística y te encuentras en tu\
+	 cuarto, cenado y listo para acostarte. Te has estado preparando el\
+	 examen durante los tres últimos meses y te sientes confiado.</p>\
+	</br>\
+	<p class='transient'>Llegados a este punto podrías\
+	 <a href='acostarse'>acostarte</a> directamente y descansar tus ocho\
+	 horas, si los nervios te lo permiten. Dado el estado de nerviosismo\
+	 que te suscita el examen de mañana, podrías <a href='teduermes'>repasar\
+	 los temas que más te cuestan</a> para autoconvencerte de que te va a\
+	 salir bien y así poder dormir tranquilo. Otra opción sería la de\
+	 <a href='youtube'>coger el móvil y sumergirte en YouTube</a>: has\
+	 estado estudiando estos meses y estás preparado de sobra, te mereces\
+	 un poco de ocio antes de la prueba final, no va a pasar nada.</p>"
+  ),
+
+	youtube: new undum.SimpleSituation(
+		"<p>Te metes en la cama, coges el móvil, abres YouTube y buscas\
+		 ese canal que tanto te gusta ver. Ves un video, al terminar\
+		 ves el siguiente, y otro video, y otro, y otro...</p>\
+		</br>\
+		<p>Un olor a comida te invade. Recuerdas que hoy es tu examen y\
+		 abres los ojos de par en par, vas a buscar tu móvil en la\
+		 mesita para mirar la hora pero no lo encuentras. Te incorporas\
+		 y ves que tu móvil está en la almohada, ahora lo recuerdas:\
+		 anoche estuviste viendo YouTube antes de acostarte. Miras la\
+		 hora: las 14:27. Un escalofrío recorre tu espalda, te quedaste\
+		 frito anoche, se te olvidó poner la alarma y te has quedado\
+		 dormido. Buscando un atisbo de esperanza vas a revisar la hora\
+		 del examen en docencia virtual para comprobar lo que ya sabías\
+		 de sobra: el examen era a las 09:00. Todo el trabajo que has\
+		 realizado se ha ido a la porra por unos minutos de ocio.</p>"
+),
+	acostarse: new undum.SimpleSituation(
+		"<p>Decides meterte en la cama y dormirte ya, no sin antes\
+		 olvidarte de coger el móvil, poner una alarma a una hora\
+		 prudente y dejarlo en la mesita de noche. Tras un tiempo sin\
+		 poder dormirte, notas como se cierran tus parpados lentamente\
+		 y sucumbes al sueño.</p></br><p>Un eco retumba en tu cabeza;\
+		 es la alarma.</p></br><p class='transient'>Podrías\
+		 <a href='apagaralarma'>apagarla y levantarte</a> o bien\
+		 <a href='teduermes'>posponerla 10 minutos</a>, al fin y al\
+		 cabo estar bien descansado para el día de hoy es\
+		 importante.</p>"
+),
+	apagaralarma: new undum.SimpleSituation(
+		"<p>Apagas la alarma y miras la hora, todo va sobre ruedas. Si\
+		 bien anoche te costó un tiempo dormirte porque estabas un poco\
+		 nervioso te sientes descansado y con un poco de hambre.\
+		 Podrías <a href='./desayunar' class='once'>desayunar</a>\
+		 para coger fuerzas, <a href='./ducharte' class='once'>ducharte\
+		</a> o bien <a href='revisarmochila'>revisar la mochila</a>\
+		 para comprobar si tienes todo lo necesario, por si las moscas.\
+		</p></br>",
+		{
+            		actions: {
+                		"desayunar": "<p>Te diriges a la cocina en\
+				 busca de un buen café que te espabile y esos\
+				 cereales que tanto te gustan. Terminas de\
+				 desayunar y regresas a tu cuarto.</p></br>",
+				"ducharte": "<p>Te diriges al baño dispuesto\
+				 a darte una ducha. Tras ducharte te dispones\
+				 a lavarte los dientes y aliviar un poco la\
+				 vejiga para evitar imprevistos durante el\
+				 examen, que nunca se sabe.</p></br>"
+            		}
+        	}
+),
+	revisarmochila: new undum.SimpleSituation(
+		"<p>Te acercas a la mochila que descansa a los pies de tu\
+		 escritorio y la abres para inspeccionarla. Deberían de estar\
+		 dentro tu <a href='./buscarcalculadora' class='once'>\
+		calculadora</a>, <a href='./buscartablas' class='once'>tus\
+		 tablas de distribuciones</a> y tu <a href='./buscarcartera'\
+		 class='once'>cartera</a> con tu DNI.</p></br>",
+		{
+			actions: {
+				"buscarcalculadora": "<p>Miras en el bolsillo\
+				 exterior de tu mochila, donde sueles guardar\
+				 el estuche y la calculadora tras pasar la\
+				 jornada estudiando en la biblioteca y ahí\
+				 esta: tu calculadora, justo donde la dejaste\
+				 el día anterior.</p></br>",
+				"buscartablas": "<p>Buscas con la mirada en el\
+				 bolsillo más grande y encuentras las tablas de\
+				 distribuciones con las que estuviste\
+				 trabajando ayer por la mañana.</p></br>",
+				"buscarcartera": "<p>Buscas y rebuscas en la\
+				 mochila y no encuentras tu cartera, seguro que\
+				 ayer se te pasó guardarla aunque creyeras\
+				 recordar que sí lo hiciste. Tras hacer memoria\
+				, estás seguro de que debe de estar en los\
+				 <a href='./pantalones' class='once'>pantalones\
+				</a> o en la <a href='./chaqueta' class='once'>\
+				chaqueta</a> que te pusiste ayer para ir a la\
+				 biblioteca por la mañana.</p></br>",
+				"pantalones": "<p>Buscas con la mano en los\
+				 bolsillos de tu pantalón y no encuentras nada,\
+				 empiezas a preocuparte ante la idea de perder\
++				 demasiado tiempo buscando el DNI.</p></br>",
+				"chaqueta": "<p>Rebuscas en la chaqueta y en el\
+				 bolsillo interior ahí está, tu cartera. La\
+				 abres y compruebas que, efectivamente,\
+				 contiene tu DNI. La depositas en el bolsillo\
+				 más chico de tu mochila y te la echas a la\
+				 espalda.</p></br>"
+			}
+		}
+),
+	teduermes: new undum.SimpleSituation(
+		"<p>Apagas la alarma y miras la hora; han pasado casi 45\
+		 minutos desde que sonó la alarma y has estado posponiéndola\
+		 inconscientemente todo este tiempo. Te levantas agitado y\
+		 piensas rápido: no hay tiempo para desayunar, prefieres pasar\
+		 hambre a llegar tarde al examen que has estado preparando\
+		 durante tanto tiempo. Tampoco hay tiempo para ducharse, es un\
+		 lujo que no te puedes permitir ahora mismo.</p></br>\
+		<p class='transient'>Tras pensarlo, solo ves dos opciones\
+		 posibles: podrías <a href='revisarmochila'>revisar la mochila\
+		</a> corriendo para comprobar que llevas todo o\
+		 <a href='fininventario'>salir corriendo</a> para no\
+		 desperdiciar ni un solo segundo más de tiempo.</p>"
+),
 
     // NB: The 'hub' situation which is the main list of topics, is
     // defined wholly in the HTML file, and doesn't have an entry in
@@ -485,5 +591,5 @@ undum.game.init = function(character, system) {
     character.qualities.luck = 0;
     character.qualities.novice = 1;
     character.qualities.inspiration = 0;
-    system.setCharacterText("<p>You are starting on an exciting journey.</p>");
+    system.setCharacterText("<p>Acabas de empezar la historia.</p>");
 };

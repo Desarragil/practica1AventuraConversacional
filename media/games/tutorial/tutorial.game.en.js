@@ -36,13 +36,30 @@ undum.game.situations = {
 	<p class='transient'>Llegados a este punto podrías\
 	 <a href='acostarse'>acostarte</a> directamente y descansar tus ocho\
 	 horas, si los nervios te lo permiten. Dado el estado de nerviosismo\
-	 que te suscita el examen de mañana, podrías <a href='teduermes'>repasar\
+	 que te suscita el examen de mañana, podrías <a href='repasar'>repasar\
 	 los temas que más te cuestan</a> para autoconvencerte de que te va a\
 	 salir bien y así poder dormir tranquilo. Otra opción sería la de\
 	 <a href='youtube'>coger el móvil y sumergirte en YouTube</a>: has\
 	 estado estudiando estos meses y estás preparado de sobra, te mereces\
 	 un poco de ocio antes de la prueba final, no va a pasar nada.</p>"
   ),
+
+	repasar: new undum.SimpleSituation(
+		"<p>Te sientas en tu escritorio, coges los apuntes de teoría y\
+		 te enfrascas en la tarea de dar un último repaso a esos\
+		 conceptos que tanto te cuesta entender. Sin darte cuenta miras\
+		 tu móvil y ves que han pasado casi dos horas desde que te\
+		 sentaste. Corriendo, te pones el pijama, pones una alarma a\
+		 una hora prudente y te metes en la cama. No tienes problema\
+		 para caer dormido al instante.</p></br>",
+		{
+		enter: function(character, system, to) {
+			system.setQuality("descansado", 1);
+			system.setQuality("hambriento",1);
+			system.doLink('teduermes')		       
+			}
+		}
+),
 
 	youtube: new undum.SimpleSituation(
 		"<p>Te metes en la cama, coges el móvil, abres YouTube y buscas\
@@ -59,7 +76,13 @@ undum.game.situations = {
 		 dormido. Buscando un atisbo de esperanza vas a revisar la hora\
 		 del examen en docencia virtual para comprobar lo que ya sabías\
 		 de sobra: el examen era a las 09:00. Todo el trabajo que has\
-		 realizado se ha ido a la porra por unos minutos de ocio.</p>"
+		 realizado se ha ido a la porra por unos minutos de ocio.</p>",
+		{
+		enter: function(character, system, to) {
+					system.setQuality("descansado", 1);
+					system.setQuality("hambriento", 1)
+				}
+		}
 ),
 	acostarse: new undum.SimpleSituation(
 		"<p>Decides meterte en la cama y dormirte ya, no sin antes\
@@ -71,7 +94,13 @@ undum.game.situations = {
 		 <a href='apagaralarma'>apagarla y levantarte</a> o bien\
 		 <a href='teduermes'>posponerla 10 minutos</a>, al fin y al\
 		 cabo estar bien descansado para el día de hoy es\
-		 importante.</p>"
+		 importante.</p>",
+		{
+		exit: function(character, system, to) {
+					system.setQuality("descansado", 1);
+					system.setQuality("hambriento", 1)
+				}
+		}
 ),
 	apagaralarma: new undum.SimpleSituation(
 		"<p>Apagas la alarma y miras la hora, todo va sobre ruedas. Si\
@@ -84,10 +113,13 @@ undum.game.situations = {
 		</p></br>",
 		{
             		actions: {
-                		"desayunar": "<p>Te diriges a la cocina en\
+                		"desayunar": function(character, system, to) {
+                			system.setQuality("hambriento", 0);
+					system.write(
+				"<p>Te diriges a la cocina en\
 				 busca de un buen café que te espabile y esos\
 				 cereales que tanto te gustan. Terminas de\
-				 desayunar y regresas a tu cuarto.</p></br>",
+				 desayunar y regresas a tu cuarto.</p></br>")},
 				"ducharte": "<p>Te diriges al baño dispuesto\
 				 a darte una ducha. Tras ducharte te dispones\
 				 a lavarte los dientes y aliviar un poco la\
@@ -105,16 +137,24 @@ undum.game.situations = {
 		 class='once'>cartera</a> con tu DNI.</p></br>",
 		{
 			actions: {
-				"buscarcalculadora": "<p>Miras en el bolsillo\
+				"buscarcalculadora": function(character, system, to) {
+                			system.setQuality("calculadora", 1);
+					system.write( 
+				"<p>Miras en el bolsillo\
 				 exterior de tu mochila, donde sueles guardar\
 				 el estuche y la calculadora tras pasar la\
 				 jornada estudiando en la biblioteca y ahí\
 				 esta: tu calculadora, justo donde la dejaste\
-				 el día anterior.</p></br>",
-				"buscartablas": "<p>Buscas con la mirada en el\
+				 el día anterior.</p></br>")},
+
+				"buscartablas": function(character, system, to) {
+                			system.setQuality("tablas", 1);
+					system.write(
+				"<p>Buscas con la mirada en el\
 				 bolsillo más grande y encuentras las tablas de\
 				 distribuciones con las que estuviste\
-				 trabajando ayer por la mañana.</p></br>",
+				 trabajando ayer por la mañana.</p></br>")},
+
 				"buscarcartera": "<p>Buscas y rebuscas en la\
 				 mochila y no encuentras tu cartera, seguro que\
 				 ayer se te pasó guardarla aunque creyeras\
@@ -124,16 +164,21 @@ undum.game.situations = {
 				</a> o en la <a href='./chaqueta' class='once'>\
 				chaqueta</a> que te pusiste ayer para ir a la\
 				 biblioteca por la mañana.</p></br>",
+
 				"pantalones": "<p>Buscas con la mano en los\
 				 bolsillos de tu pantalón y no encuentras nada,\
 				 empiezas a preocuparte ante la idea de perder\
 +				 demasiado tiempo buscando el DNI.</p></br>",
-				"chaqueta": "<p>Rebuscas en la chaqueta y en el\
+
+				"chaqueta": function(character, system, to) {
+                			system.setQuality("dni", 1);
+					system.write(
+				"<p>Rebuscas en la chaqueta y en el\
 				 bolsillo interior ahí está, tu cartera. La\
 				 abres y compruebas que, efectivamente,\
 				 contiene tu DNI. La depositas en el bolsillo\
 				 más chico de tu mochila y te la echas a la\
-				 espalda.</p></br>"
+				 espalda.</p></br>")}
 			}
 		}
 ),
@@ -148,8 +193,29 @@ undum.game.situations = {
 		<p class='transient'>Tras pensarlo, solo ves dos opciones\
 		 posibles: podrías <a href='revisarmochila'>revisar la mochila\
 		</a> corriendo para comprobar que llevas todo o\
-		 <a href='fininventario'>salir corriendo</a> para no\
-		 desperdiciar ni un solo segundo más de tiempo.</p>"
+		 <a href='examen'>salir corriendo</a> para no\
+		 desperdiciar ni un solo segundo más de tiempo.</p>",
+		{
+		exit: function(character, system, to) {
+					system.setQuality("tablas", 1);
+					system.setQuality("calculadora", 1);
+					system.doLink('examen')
+					}
+		}
+		
+),
+
+	examen: new undum.SimpleSituation(
+		"",
+
+		{
+		enter :function(character, system, to) {
+				if (character.qualities.dni == 0) {
+          				system.write("<p>Buscas en tu mochila y encuentras tu 						calculadora y tus tablas de distribución, sigues buscando y 						no encuentras tu cartera. Buscas una, dos y cinco veces y no 						aparece. Nervioso acudes a la profesora para contarle tu 						situación y conseguir que te deje sentarte en tu sitio. Tras 						discutir con la profesora durante 5 minutos consigues que se 						enfade y que te expulse del aula. Has suspendido, todo el 						trabajo de estos tres últimos meses no ha servido de \
+					nada.</p>");
+        			}
+			}
+		}
 ),
 
     // NB: The 'hub' situation which is the main list of topics, is
@@ -552,6 +618,24 @@ undum.game.start = "start";
  * possess. We don't have to be exhaustive, but if we miss one out then
  * that quality will never show up in the character bar in the UI. */
 undum.game.qualities = {
+	calculadora: new undum.OnOffQuality(
+		"Calculadora",{priority:"0001", group:'mochila',onDisplay:"&#10003;"}
+	),
+
+	tablas: new undum.OnOffQuality(
+		"Tablas de distribución",{priority:"0002", group:'mochila',onDisplay:"&#10003;"}
+	),
+	dni: new undum.OnOffQuality("DNI",{priority:"0003", group:'mochila',onDisplay:"&#10003;"}
+	),
+	descansado: new undum.YesNoQuality("Descansado",{priority:"0001",group:'estado',yesDisplay:"Sí",noDisplay:"No"}
+	),
+	hambriento: new undum.YesNoQuality("Hambriento",{priority:"0002",group:'estado',yesDisplay:"Sí",noDisplay:"No"}
+	),
+
+
+
+
+
     skill: new undum.IntegerQuality(
         "Skill", {priority:"0001", group:'stats'}
     ),
@@ -578,8 +662,10 @@ undum.game.qualities = {
  * the end. It is an error to have a quality definition belong to a
  * non-existent group. */
 undum.game.qualityGroups = {
-    stats: new undum.QualityGroup(null, {priority:"0001"}),
-    progress: new undum.QualityGroup('Progress', {priority:"0002"})
+    mochila: new undum.QualityGroup('Mochila', {priority:"0001"}),
+    estado: new undum.QualityGroup('Estado del personaje', {priority:"0002"}),
+    stats: new undum.QualityGroup('Stats', {priority:"0003"}),
+    progress: new undum.QualityGroup('Progress', {priority:"0004"})
 };
 
 // ---------------------------------------------------------------------------
@@ -591,5 +677,10 @@ undum.game.init = function(character, system) {
     character.qualities.luck = 0;
     character.qualities.novice = 1;
     character.qualities.inspiration = 0;
+	character.qualities.calculadora = 0;
+    character.qualities.tablas = 0;
+    character.qualities.dni = 0;
+    character.qualities.descansado = 0;
+    character.qualities.hambriento = 0;
     system.setCharacterText("<p>Acabas de empezar la historia.</p>");
 };

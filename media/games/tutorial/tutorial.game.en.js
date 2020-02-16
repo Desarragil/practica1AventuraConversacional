@@ -30,7 +30,10 @@ undum.game.slideUpSpeed = 500
 undum.game.situations = {
 
     	inicio: new undum.SimpleSituation(
-        	"<p>Es el día anterior al examen de estadística y te encuentras\
+        	"<h1>Tu cuarto, el día anterior al examen.</h1>\
+		<p><img src='media/games/tutorial/dormitorio.jpg' width='500' \
+		height='250'></p></br>\
+		<p>Es el día anterior al examen de estadística y te encuentras\
 		 en tu cuarto, cenado y listo para acostarte. Te has estado\
 		 preparando el examen durante los tres últimos meses y te\
 		 sientes confiado.</p>\
@@ -55,12 +58,17 @@ undum.game.situations = {
 		 tu móvil y ves que han pasado casi dos horas desde que te\
 		 sentaste. Corriendo, te pones el pijama, pones una alarma a\
 		 una hora prudente y te metes en la cama. No tienes problema\
-		 para caer dormido al instante.</p></br>",
+		 para caer dormido al instante.</p></br>\
+		<h1>A la mañana siguiente...</h1><p>Un eco retumba en tu \
+		cabeza; es la alarma.</p></br><p class='transient'>Podrías\
+		 <a href='apagaralarma'>apagarla y levantarte</a> o bien\
+		 <a href='teduermes'>posponerla 10 minutos</a>, al fin y al\
+		 cabo estar bien descansado para el día de hoy es\
+		 importante.</p>",
 		{
 		enter: function(character, system, to) {
-			system.setQuality("descansado", 1);
-			system.setQuality("hambriento",1);
-			system.doLink('teduermes')		       
+			system.setQuality("descansado", 0);
+			system.setQuality("hambriento",1);		       
 			}
 		}
 	),
@@ -70,6 +78,7 @@ undum.game.situations = {
 		 ese canal que tanto te gusta ver. Ves un video, al terminar\
 		 ves el siguiente, y otro video, y otro, y otro...</p>\
 		</br>\
+		<h1>Al día siguiente...</h1>\
 		<p>Un olor a comida te invade. Recuerdas que hoy es tu examen y\
 		 abres los ojos de par en par, vas a buscar tu móvil en la\
 		 mesita para mirar la hora pero no lo encuentras. Te incorporas\
@@ -80,7 +89,9 @@ undum.game.situations = {
 		 dormido. Buscando un atisbo de esperanza vas a revisar la hora\
 		 del examen en docencia virtual para comprobar lo que ya sabías\
 		 de sobra: el examen era a las 09:00. Todo el trabajo que has\
-		 realizado se ha ido a la porra por unos minutos de ocio.</p>",
+		 realizado se ha ido a la porra por unos minutos de ocio.</p></br>\
+		<img src='media/games/tutorial/dormido.gif' width='480'\
+		height='269'>",
 		{
 		enter: function(character, system, to) {
 					system.setQuality("descansado", 1);
@@ -94,8 +105,9 @@ undum.game.situations = {
 		 olvidarte de coger el móvil, poner una alarma a una hora\
 		 prudente y dejarlo en la mesita de noche. Tras un tiempo sin\
 		 poder dormirte, notas como se cierran tus parpados lentamente\
-		 y sucumbes al sueño.</p></br><p>Un eco retumba en tu cabeza;\
-		 es la alarma.</p></br><p class='transient'>Podrías\
+		 y sucumbes al sueño.</p></br>\
+		<h1>A la mañana siguiente...</h1><p>Un eco retumba en tu \
+		cabeza; es la alarma.</p></br><p class='transient'>Podrías\
 		 <a href='apagaralarma'>apagarla y levantarte</a> o bien\
 		 <a href='teduermes'>posponerla 10 minutos</a>, al fin y al\
 		 cabo estar bien descansado para el día de hoy es\
@@ -213,13 +225,18 @@ undum.game.situations = {
 		"",
 
 		{
+		heading: "El examen",
 		enter :function(character, system, to) {
+				system.write("<img src='media/games/tutorial/\
+				examen.jpg' width='500' height='350'></br>");
+
 				if ( character.qualities.tablas == 0 ) {
 					system.setQuality("tablas", 1);
 					system.setQuality("calculadora", 1)
 				}
 
 				if (character.qualities.dni == 0) {
+					
           				system.write("<p>Buscas en tu mochila y\
 					 encuentras tu calculadora y tus tablas\
 					 de distribución, sigues buscando y no\
@@ -232,7 +249,10 @@ undum.game.situations = {
 					 consigues que se enfade y que te\
 					 expulse del aula. Has suspendido, todo\
 					 el trabajo de estos tres últimos meses\
-					 no ha servido de nada.</p></br>");
+					 no ha servido de nada.</p></br>\
+					<img src='media/games/tutorial/\
+					fracaso.gif' width='500' height='350'>"
+					);
         			} else {
 					system.write("<p>Sacas de tu mochila la\
 					 calculadora, las tablas de \
@@ -258,7 +278,10 @@ undum.game.situations = {
 						desmayado en mitad del examen, \
 						todo el trabajo de estos tres \
 						últimos meses no ha servido de \
-						nada.</p></br>");
+						nada.</p></br>\
+						<img src='media/games/tutorial\
+						/desmayo.gif' width='500' \
+						height='350'>");
 					} else if (character.qualities.descansado 
 									== 0 ) 
 					{
@@ -289,7 +312,9 @@ undum.game.situations = {
 						día del examen no estabas al \
 						100%. Todo el trabajo de estos \
 						tres últimos meses no ha \
-						servido de nada.</p></br>");
+						servido de nada.</p></br>\
+						<img src='media/games/tutorial\
+						/suspenso.gif'>");
 					} else {
 						system.write("<p>Te dispones a \
 						realizar el examen. Te sientes \
@@ -311,7 +336,10 @@ undum.game.situations = {
 						recibes tu nota: matrícula de \
 						honor. Todo el trabajo de los \
 						últimos tres meses ha dado su \
-						recompensa.</p></br>");
+						recompensa.</p></br>\
+						<img src='media/games/tutorial\
+						/yeah.gif' width='500' \
+						height='500'>");
 					}
 				}
 			}

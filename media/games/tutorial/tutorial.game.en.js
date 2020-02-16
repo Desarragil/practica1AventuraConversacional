@@ -178,7 +178,8 @@ undum.game.situations = {
 				 abres y compruebas que, efectivamente,\
 				 contiene tu DNI. La depositas en el bolsillo\
 				 más chico de tu mochila y te la echas a la\
-				 espalda.</p></br>")}
+				 espalda y <a href='examen'>te diriges al\
+				 examen</a>.</p></br>")}
 			}
 		}
 ),
@@ -196,11 +197,7 @@ undum.game.situations = {
 		 <a href='examen'>salir corriendo</a> para no\
 		 desperdiciar ni un solo segundo más de tiempo.</p>",
 		{
-		exit: function(character, system, to) {
-					system.setQuality("tablas", 1);
-					system.setQuality("calculadora", 1);
-					system.doLink('examen')
-					}
+		
 		}
 		
 ),
@@ -210,10 +207,25 @@ undum.game.situations = {
 
 		{
 		enter :function(character, system, to) {
+				if ( character.qualities.tablas == 0 ) {
+					system.setQuality("tablas", 1);
+					system.setQuality("calculadora", 1)
+				}
+
 				if (character.qualities.dni == 0) {
           				system.write("<p>Buscas en tu mochila y encuentras tu 						calculadora y tus tablas de distribución, sigues buscando y 						no encuentras tu cartera. Buscas una, dos y cinco veces y no 						aparece. Nervioso acudes a la profesora para contarle tu 						situación y conseguir que te deje sentarte en tu sitio. Tras 						discutir con la profesora durante 5 minutos consigues que se 						enfade y que te expulse del aula. Has suspendido, todo el 						trabajo de estos tres últimos meses no ha servido de \
-					nada.</p>");
-        			}
+					nada.</p></br>");
+        			} else {
+					system.write("<p>Sacas de tu mochila la calculadora, las 						tablas de distribución y tu DNI. Acto seguido, dejas la 					mochila con el resto de mochilas de tus compañeros y te 					diriges a tu asiento. Una vez allí y estando todos listos, la 						profesora procede a entregar el examen.</p></br>");
+					if( character.qualities.hambriento == 1 ) {
+						system.write("<p>Empiezas a hacer el examen y pasados 							30 minutos te encuentras fatigado, recuerdas que esta 							mañana no desayunaste. Haces un esfuerzo por 							concentrarte en el examen y sigues con ello, por un 							momento crees tenerlo todo controlado pero de repente 							todo se vuelve negro. Te ha dado un bajón de azúcar y 							te has desmayado en mitad del examen, todo el trabajo 							de estos tres últimos meses no ha servido de nada.\
+						</p></br>");
+					} else if ( character.qualities.descansado == 0 ) {
+						system.write("<p>Te dispones a realizar el examen. Te 							sientes un poco cansado pero seguro de lo que estás 							respondiendo, lo has hecho mil veces estos últimos 							tres meses de estudio. Tras tres duras horas 							poniéndote a prueba estás agotado y decides entregar 							el examen después de echarle un vistazo rápido a todo 							lo que has contestado; estás muerto de sueño y en lo 							único que piensas es en la siesta que te vas a dar 							como merecido premio al llegar a casa. Tras unas 							semanas, ves que has suspendido con mucha menos nota 							de la que esperabas. Vas a revisión y compruebas que 							todo el examen está plagado de fallos tontos y 							erratas. Solo hay una explicación posible; no 							descansaste lo suficiente y el día del examen no 							estabas al 100%. Todo el trabajo de estos tres 							últimos meses no ha servido de nada.</p></br>");
+					} else {
+						system.write("<p>Te dispones a realizar el examen. Te 							sientes confiado y con fuerzas, seguro de lo que 							estás respondiendo, lo has hecho mil veces estos tres 							meses de estudio. Tras tres duras horas poniéndote a 							prueba terminas el examen y aún quedan unos minutos 							para que acabe el tiempo del examen. Decides repasar 							el examen y no jugártela por terminar pronto. 							Mientras revisas el examen encuentras cuatro errores 							tontos que has cometido; los corriges, escribes tu 							nombre y lo entregas. Semanas después recibes tu 							nota: matrícula de honor. Todo el trabajo de los 							últimos tres meses ha dado su recompensa.</p></br>");
+					}
+}
 			}
 		}
 ),

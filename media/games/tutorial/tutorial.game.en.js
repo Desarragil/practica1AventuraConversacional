@@ -34,9 +34,9 @@ undum.game.situations = {
 		<p><img src='media/games/tutorial/dormitorio.jpg' width='500' \
 		height='250'></p></br>\
 		<p>Es el día anterior al examen de estadística y te encuentras\
-		 en tu cuarto, cenado y listo para acostarte. Te has estado\
-		 preparando el examen durante los tres últimos meses y te\
-		 sientes confiado.</p>\
+		 en tu cuarto, cenado y listo para acostarte. Te has estado \
+		 preparando el examen durante los tres últimos meses y te \
+		 sientes confiado.</p> \
 		</br>\
 		<p class='transient'>Llegados a este punto podrías\
 		 <a href='acostarse'>acostarte</a> directamente y descansar\
@@ -295,7 +295,7 @@ undum.game.situations = {
 						poniéndote a prueba estás \
 						agotado y decides entregar el \
 						examen después de echarle un \
-						vistazo rápido a todomlo que \
+						vistazo rápido a todo lo que \
 						has contestado; estás muerto \
 						de sueño y en lo único que \
 						piensas es en la siesta que te \

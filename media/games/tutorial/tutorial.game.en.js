@@ -295,7 +295,7 @@ undum.game.situations = {
 						poniéndote a prueba estás \
 						agotado y decides entregar el \
 						examen después de echarle un \
-						vistazo rápido a todomlo que \
+						vistazo rápido a todo lo que \
 						has contestado; estás muerto \
 						de sueño y en lo único que \
 						piensas es en la siesta que te \

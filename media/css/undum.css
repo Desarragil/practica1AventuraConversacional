@@ -1,6 +1,6 @@
 body {
-    background: #170804 url("../img/page_bg.jpg") repeat-x left top;
-    font-family: Palatino, Times, "Times New Roman", serif;
+    background: #170804 url("../img/fondo2.jpg") repeat;
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     line-height: 1.6em;
     background-attachment: fixed;
@@ -18,11 +18,11 @@ body {
 
 /* The title block */
 #title, #title .label, #content, .tools {
-    border-radius: 2px;
+    border-radius: 10px;
 }
 #title {
     max-width: 28em;
-    background: #e6e6c6 url("../img/title_bg.jpg") repeat -1.1em -1.1em;
+    background: #e6e6c6 url("../img/fondo.jpg") repeat -1.1em -1.1em;
     margin: 2.2em auto 1.1em auto;
     padding: 1.7em;
     border: 1.1em solid rgba(0,0,0,0.25);
@@ -30,7 +30,7 @@ body {
 }
 #title .label {
     overflow: hidden;
-    background: #e6e6c6 url("../img/text_bg.jpg") repeat left top;
+    background: #e6e6c6 /*url("../img/text_bg.jpg") repeat left top*/;
     padding: 2.0em;
     margin: auto;
     max-width: 18em;
@@ -96,8 +96,10 @@ body {
 #content_wrapper {
     max-width: 28em;
     position: relative;
-    background: #e6e6c6 url("../img/text_bg.jpg") repeat left top;
+    background: #e6e6c6 /*url("../img/text_bg.jpg") repeat left top*/;
     margin: 0.6em auto 1.1em auto;
+    border: 4px dashed #dd5840;
+    border-radius: 10px;
     padding: 2.8em;
     display: none; /* Shown by Javascript */
     overflow: auto;
@@ -210,7 +212,7 @@ img.float_left {
 .tools {
     padding: 0.6em;
     width: 8.9em;
-    background: #cec3ae url("../img/tools_bg.jpg") repeat left top;
+    background: #e6e6c6 /*url("../img/tools_bg.jpg") repeat left top*/;
     position: absolute;
 }
 .tools p {
@@ -218,10 +220,14 @@ img.float_left {
     line-height: 1.5em;
 }
 .tools.left {
-    left: 0.4em;
+    border: 4px dashed #20bcd5;
+    left: -0.8em;
+    
 }
 .tools.right {
-    right: 0.4em;
+    border: 4px dashed #ffdf00;
+    right: -0.8em;
+    
 }
 
 .tools h1 {
